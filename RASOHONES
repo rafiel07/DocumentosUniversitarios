@@ -1,0 +1,45 @@
+-- Tabla de Clientes
+CREATE TABLE Clientes (
+ClienteID INT PRIMARY KEY,
+Nombre VARCHAR(50),
+Telefono VARCHAR(15)
+);
+-- Tabla de Empleados
+CREATE TABLE Empleados (
+EmpleadoID INT PRIMARY KEY,
+Nombre VARCHAR(50),
+Cargo VARCHAR(50)
+);
+@December 8, 2023 4:32 PM
+DB-venta-reparación-equipos-telefonico 2
+-- Tabla de Productos
+CREATE TABLE Productos (
+ProductoID INT PRIMARY KEY,
+Nombre VARCHAR(50),
+Precio DECIMAL(10, 2)
+);
+-- Tabla de Ventas
+CREATE TABLE Ventas (
+VentaID INT PRIMARY KEY,
+ClienteID INT,
+EmpleadoID INT,
+ProductoID INT,
+FechaVenta DATE,
+Cantidad INT,
+Total DECIMAL(10, 2),
+FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID),
+FOREIGN KEY (EmpleadoID) REFERENCES Empleados(EmpleadoID),
+FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
+);
+-- Tabla de Reparaciones
+CREATE TABLE Reparaciones (
+ReparacionID INT PRIMARY KEY,
+ClienteID INT,
+EmpleadoID INT,
+ProductoID INT,
+FechaReparacion DATE,
+Costo DECIMAL(10, 2),
+FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID),
+FOREIGN KEY (EmpleadoID) REFERENCES Empleados(EmpleadoID),
+FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
+);
